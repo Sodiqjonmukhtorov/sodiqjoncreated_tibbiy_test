@@ -1,6 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 
-export const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Use import.meta.env for Vite projects. 
+// Note: process.env is not available in the browser in Vite production builds.
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+export const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export interface Question {
   id: number;
